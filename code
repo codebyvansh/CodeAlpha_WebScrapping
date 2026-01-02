@@ -1,0 +1,15 @@
+# code of project
+
+import requests
+from bs4 import BeautifulSoup
+
+# public site used
+url = "https://www.bbc.com/news"   
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+
+# extracting titles from site
+headlines = soup.find_all('h2')  
+print("Top BBC News Headlines:\n")
+for i, h in enumerate(headlines[:10], start=1):
+    print(i, h.get_text(strip=True))
